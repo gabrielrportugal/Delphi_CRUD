@@ -122,8 +122,7 @@ end;
 function TClienteDAO.CPFDuplicado(const ACliente: TCliente): Boolean;
 begin
 
-  LSQL := 'SELECT * FROM CLIENTE WHERE NOME = ' + QuotedStr(ACliente.Nome) +
-    'AND CPF = ' + QuotedStr(ACliente.CPF) + ';';
+  LSQL := 'SELECT * FROM CLIENTE WHERE CPF = ' + QuotedStr(ACliente.CPF) + ';';
 
   ExibirDataSet(LSQL);
 
@@ -139,8 +138,7 @@ begin
       Result := true;
     end
     else
-      Result := false;
-    raise ECpfDuplicado.Create('CPF Duplicado');
+      raise ECpfDuplicado.Create('CPF Duplicado');
   end
   else
   begin

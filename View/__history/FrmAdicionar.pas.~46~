@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  ClienteController;
+  ClienteController, ClienteModel;
 
 type
   TForm2 = class(TForm)
@@ -20,6 +20,8 @@ type
     procedure AdicionarClick(Sender: TObject);
   private
     FClienteControl: TClienteControl;
+    FCliente: TCliente;
+    procedure AddCliente(const ANome, ACPF: String);
     { Private declarations }
   public
     { Public declarations }
@@ -37,20 +39,32 @@ implementation
 uses
   UITypes, CPFException;
 
+procedure TForm2.AddCliente(const ANome, ACPF: String);
+begin
+  FCliente.Nome := ANome;
+  FCliente.CPF := ACPF;
+end;
+
 procedure TForm2.AdicionarClick(Sender: TObject);
 begin
+  FCliente := TCliente.Create;
   try
-    if FClienteControl.ValidarCPF(edtCPF.Text) then
-      if FClienteControl.ClienteDAO.CPFDuplicado(edtCPF.Text) then
-        if FClienteControl.ClienteDAO.Inserir(edtNome.Text, edtCPF.Text) then
+    AddCliente(edtNome.Text, edtCPF.Text);
+    try
+      FClienteControl.ValidarCPF(edtCPF.Text);
+      if FClienteControl.ClienteDAO.CPFDuplicado(FCliente) then
+        if FClienteControl.ClienteDAO.Inserir(FCliente) then
           if (MessageDlg('Cliente cadastrado', mtConfirmation, [mbOK], 0) = mrOK)
           then
             ModalResult := mrOK;
-  except
-    on E: ECpfDuplicado do
-      raise;
-    on E : ECpfInvalido do
-      raise;
+    except
+      on E: ECpfDuplicado do
+        raise;
+      on E: ECpfInvalido do
+        raise;
+    end;
+  finally
+    FCliente.Free;
   end;
 end;
 

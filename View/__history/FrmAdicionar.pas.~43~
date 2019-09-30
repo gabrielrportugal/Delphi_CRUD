@@ -51,12 +51,12 @@ begin
   try
     AddCliente(edtNome.Text, edtCPF.Text);
     try
-      FClienteControl.ValidarCPF(edtCPF.Text);
-      FClienteControl.ClienteDAO.CPFDuplicado(FCliente);
-      if FClienteControl.ClienteDAO.Inserir(FCliente) then
-        if (MessageDlg('Cliente cadastrado', mtConfirmation, [mbOK], 0) = mrOK)
-        then
-          ModalResult := mrOK;
+      if FClienteControl.ValidarCPF(FCliente.CPF) then
+        if FClienteControl.ClienteDAO.CPFDuplicado(FCliente) then
+          if FClienteControl.ClienteDAO.Inserir(FCliente) then
+            if (MessageDlg('Cliente cadastrado', mtConfirmation, [mbOK], 0)
+              = mrOK) then
+              ModalResult := mrOK;
     except
       on E: ECpfDuplicado do
         raise;
@@ -64,7 +64,7 @@ begin
         raise;
     end;
   finally
-    FCliente.Free;
+     FCliente.Free;
   end;
 end;
 

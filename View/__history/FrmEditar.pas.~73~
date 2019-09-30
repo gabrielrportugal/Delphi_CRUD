@@ -62,8 +62,8 @@ begin
   with FClienteControl do
     try
       AtualizarClienteEdit;
-      if (ClienteDAO.VerificarCPFEditado(edtCPF.Text, edtNome.Text) and
-        ValidarCPF(edtCPF.Text) and ClienteDAO.CPFDuplicado(edtCPF.Text)) then
+      ValidarCPF(edtCPF.Text);
+      if ClienteDAO.CPFDuplicado(FCliente) then
         if (MessageDlg('Cliente editado', mtConfirmation, [mbOK], 0) = mrOK)
         then
         begin
