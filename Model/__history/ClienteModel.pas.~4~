@@ -1,0 +1,47 @@
+unit ClienteModel;
+
+interface
+
+type
+  TCliente = class
+    private
+    FCPF: string;
+    FID: integer;
+    FNome: string;
+    FData: TDateTime;
+    procedure setCPF(const Value: string);
+    procedure setData(const Value: TDateTime);
+    procedure setNome(const Value: string);
+    procedure setID(const Value: integer);
+    public
+    property ID : integer read FID write setID;
+    property Nome : string read FNome write setNome;
+    property CPF : string read FCPF write setCPF;
+    property Data : TDateTime read FData write setData;
+  end;
+
+implementation
+
+{ TCliente }
+
+procedure TCliente.setCPF(const Value: string);
+begin
+  FCPF := Value;
+end;
+
+procedure TCliente.setData(const Value: TDateTime);
+begin
+  FData := Value;
+end;
+
+procedure TCliente.setID(const Value: integer);
+begin
+  FID := Value;
+end;
+
+procedure TCliente.setNome(const Value: string);
+begin
+  FNome := Value;
+end;
+
+end.

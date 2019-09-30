@@ -1,0 +1,15 @@
+unit CPFInvalido;
+
+interface
+
+uses
+  SysUtils;
+
+type
+  ECpfInvalido = class(Exception)
+
+  end;
+
+implementation
+
+end.

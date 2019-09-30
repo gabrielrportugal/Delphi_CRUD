@@ -1,0 +1,33 @@
+unit CPFException;
+
+interface
+
+uses
+  SysUtils;
+
+type
+  ECpfInvalido = class(Exception)
+    constructor Create;
+  end;
+
+  ECpfDuplicado = class(Exception)
+    constructor Create;
+  end;
+
+implementation
+
+{ ECpfDuplicado }
+
+constructor ECpfDuplicado.Create;
+begin
+  Self.Message := 'CPF Duplicado';
+end;
+
+{ ECpfInvalido }
+
+constructor ECpfInvalido.Create;
+begin
+  Self.Message := 'CPF Invalido';
+end;
+
+end.

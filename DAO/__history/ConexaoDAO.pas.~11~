@@ -1,0 +1,90 @@
+unit ConexaoDAO;
+
+interface
+
+uses
+  System.SysUtils, FireDAC.Comp.Client, FireDAC.Stan.Def, FireDAC.Phys.FB,
+  FireDAC.Dapt,
+  FireDAC.UI.Intf, FireDAC.VCLUI.Wait, FireDAC.Stan.Intf, FireDAC.Comp.UI,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async;
+
+type
+  TConectDAO = class
+  private
+    FDQuery: TFDQuery;
+    FDConexao: TFDConnection;
+    procedure ConectarBanco;
+    procedure InicializarQuery;
+  protected
+    function ExecutarComando(const ASQL: string): Boolean;
+    procedure ExibirDataSet(const ASQL : string);
+  public
+    constructor Create;
+    destructor Destroy;
+    property Conexao: TFDConnection read FDConexao;
+    property Query: TFDQuery read FDQuery;
+  end;
+
+implementation
+
+{ TConectDAO }
+
+// Procedimento de conectar ao banco de dados
+procedure TConectDAO.ConectarBanco;
+var
+  Banco: string;
+begin
+  FDConexao := TFDConnection.Create(nil);
+  Banco := GetCurrentDir + '\BANCO.FDB';
+  with FDConexao.Params do
+  begin
+    DriverID := 'FB';
+    Database := Banco;
+    UserName := 'SYSDBA';
+    Password := 'masterkey';
+  end;
+  FDConexao.Connected := True;
+end;
+
+constructor TConectDAO.Create;
+begin
+   ConectarBanco;
+   InicializarQuery;
+end;
+
+destructor TConectDAO.Destroy;
+begin
+  FDConexao.Free;
+  FDQuery.Free;
+  inherited;
+end;
+
+function TConectDAO.ExecutarComando(const ASQL: string): Boolean;
+begin
+  try
+    FDQuery.SQL.Clear;
+    FDQuery.SQL.Text := ASQL;
+    FDQuery.ExecSQL;
+    Result := True;
+  except
+    FDConexao.Rollback;
+    Result := False;
+  end;
+
+end;
+
+procedure TConectDAO.ExibirDataSet(const ASQL: string);
+begin
+  FDQuery.SQL.Clear;
+  FDQuery.Open(ASQL);
+  FDQuery.Active := True;
+  FDQuery.ExecSQL;
+end;
+
+procedure TConectDAO.InicializarQuery;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  FDQuery.Connection := FDConexao;
+end;
+
+end.
