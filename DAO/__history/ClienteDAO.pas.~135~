@@ -22,8 +22,7 @@ type
     function RetornarListaCompleta: TObjectList<TCliente>;
     function RetornarLista(ASQL: String): TObjectList<TCliente>;
     function CPFDuplicado(const ACliente: TCliente): Boolean;
-    function VerificarCPFEditado(const ACPF, ANome: String;
-      ID: integer): Boolean;
+    function VerificarCPFEditado(const ACliente: TCliente): Boolean;
   end;
 
 implementation
@@ -46,7 +45,17 @@ end;
 
 function TClienteDAO.CPFDuplicado(const ACliente: TCliente): Boolean;
 begin
+  LSQL := 'SELECT * FROM CLIENTE WHERE CPF = ' + QuotedStr(ACliente.CPF) + ';';
 
+  ExibirDataSet(LSQL);
+
+  if Query.RowsAffected > 0 then
+  begin
+    Result := false;
+    raise ECpfDuplicado.Create('CPF Duplicado');
+  end
+  else
+    Result := true;
 end;
 
 constructor TClienteDAO.Create;
@@ -126,21 +135,27 @@ begin
   Result := RetornarLista(LSQL);
 end;
 
-function TClienteDAO.VerificarCPFEditado(const ACPF, ANome: String;
-  ID: integer): Boolean;
+function TClienteDAO.VerificarCPFEditado(const ACliente: TCliente): Boolean;
 begin
-  LSQL := 'SELECT * FROM CLIENTE WHERE NOME =' + QuotedStr(ANome) + 'AND CPF = '
-    + QuotedStr(ACPF) + ';';
-
-  ExibirDataSet(LSQL);
-
-  if Query.RowsAffected > 0 then
+  if CPFDuplicado(ACliente) then
   begin
-    Result := false;
-    raise Exception.Create('Nenhuma alteração realizada');
+    LSQL := 'SELECT * FROM CLIENTE WHERE ID =' + QuotedStr(IntToStr(ACliente.ID)) +
+      'AND CPF = ' + QuotedStr(ACliente.CPF) + ';';
+
+    ExibirDataSet(LSQL);
+
+    if Query.RowsAffected > 0 then
+    begin
+      Result := false;
+      raise ECpfDuplicado.Create('Nenhuma alteração realizada');
+    end
+    else
+      Result := true;
   end
   else
+  begin
     Result := true;
+  end;
 end;
 
 end.

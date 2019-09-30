@@ -62,24 +62,23 @@ begin
   with FClienteControl do
     try
       AtualizarClienteEdit;
-      if not ClienteDAO.VerificarCPFEditado(edtCPF.Text, edtNome.Text) then
-      begin
-        if (ValidarCPF(edtCPF.Text) and ClienteDAO.CPFDuplicado(edtCPF.Text))
-        then
+      if ValidarCPF(edtCPF.Text) then
+        if ClienteDAO.VerificarCPFEditado(FCliente) then
           if (MessageDlg('Cliente editado', mtConfirmation, [mbOK], 0) = mrOK)
           then
           begin
             ClienteDAO.Editar(FCliente);
             ModalResult := mrOK;
           end;
-      end;
-      ShowMessage('Nenhuma alteração');
     except
       on E: ECpfInvalido do
         raise;
       on E: ECpfDuplicado do
         raise;
-
+      on E: ECpfNaoAlterado do
+        raise;
+      on E: Exception do
+        raise Exception.Create(E.Message);
     end;
 
 end;
