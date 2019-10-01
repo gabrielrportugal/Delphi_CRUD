@@ -104,22 +104,22 @@ begin
     Align := alClient;
     LListaColuna := Columns.Add;
     LListaColuna.Caption := 'ID';
-    LListaColuna.Width := 60;
+    LListaColuna.Width := 80;
     LListaColuna.Alignment := taLeftJustify;
 
     LListaColuna := Columns.Add;
     LListaColuna.Caption := 'Nome';
-    LListaColuna.Width := 160;
+    LListaColuna.Width := 190;
     LListaColuna.Alignment := taLeftJustify;
 
     LListaColuna := Columns.Add;
     LListaColuna.Caption := 'CPF';
-    LListaColuna.Width := 160;
+    LListaColuna.Width := 170;
     LListaColuna.Alignment := taLeftJustify;
 
     LListaColuna := Columns.Add;
     LListaColuna.Caption := 'DATA';
-    LListaColuna.Width := 160;
+    LListaColuna.Width := 170;
     LListaColuna.Alignment := taLeftJustify;
   end;
 end;

@@ -1,0 +1,104 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Adicionar'
+  ClientHeight = 230
+  ClientWidth = 318
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 318
+    Height = 186
+    Align = alClient
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 24
+      Top = 59
+      Width = 38
+      Height = 16
+      Caption = 'Nome:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 32
+      Top = 109
+      Width = 27
+      Height = 16
+      Caption = 'CPF:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object edtNome: TEdit
+      Left = 80
+      Top = 56
+      Width = 193
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+    end
+    object edtCPF: TEdit
+      Left = 80
+      Top = 106
+      Width = 193
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 186
+    Width = 318
+    Height = 44
+    Align = alBottom
+    TabOrder = 1
+    DesignSize = (
+      318
+      44)
+    object Adicionar: TButton
+      Left = 224
+      Top = 6
+      Width = 80
+      Height = 30
+      Anchors = [akTop, akRight]
+      Caption = 'Adicionar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnClick = AdicionarClick
+    end
+  end
+end

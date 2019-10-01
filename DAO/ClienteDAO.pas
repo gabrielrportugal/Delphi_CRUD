@@ -36,7 +36,7 @@ uses
 function TClienteDAO.BuscarLista(ANome: String): TObjectList<TCliente>;
 begin
   LSQL := 'SELECT ID,NOME,CPF,DATA FROM CLIENTE WHERE NOME LIKE ' +
-    QuotedStr('%' + ANome + '%') + 'OR  CPF LIKE ' +
+    QuotedStr('%' + ANome + '%') + ' OR CPF LIKE ' +
     QuotedStr('%' + ANome + '%') + ';';
 
   ExibirDataSet(LSQL);
@@ -60,11 +60,11 @@ end;
 function TClienteDAO.Editar(const ACliente: TCliente): Boolean;
 begin
   try
-  LSQL := 'UPDATE CLIENTE SET NOME = ' + QuotedStr(ACliente.Nome) + ',' +
-    ' CPF = ' + QuotedStr(ACliente.CPF) + ' WHERE ID = ' +
-    QuotedStr(IntToStr(ACliente.ID));
+    LSQL := 'UPDATE CLIENTE SET NOME = ' + QuotedStr(ACliente.Nome) + ',' +
+      ' CPF = ' + QuotedStr(ACliente.CPF) + ' WHERE ID = ' +
+      QuotedStr(IntToStr(ACliente.ID));
 
-  Result := ExecutarComando(LSQL);
+    Result := ExecutarComando(LSQL);
   except
     raise Exception.Create('Não foi possível atualizar');
   end;
@@ -140,13 +140,13 @@ begin
 
   ExibirDataSet(LSQL);
 
-  if Query.RowsAffected < 0 then
-    Result := True
-  else
+  if Query.RowsAffected > 0 then
   begin
-    Result := True;
+    Result := False;
     raise ECpfDuplicado.Create('CPF Duplicado');
-  end;
+  end
+  else
+    Result := True;
 end;
 
 function TClienteDAO.CPFDuplicado(const ACliente: TCliente;

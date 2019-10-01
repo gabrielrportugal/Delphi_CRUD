@@ -26,5 +26,22 @@
     <Transaction>2019/08/26 10:31:31.000.261,C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Exception\CPFException.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Exception\CPFInvalido.pas</Transaction>
     <Transaction>2019/10/01 10:40:29.776,C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\View\FrmPrincipal.dfm=C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\FrmPrincipal.dfm</Transaction>
     <Transaction>2019/10/01 10:40:29.776,C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\View\FrmPrincipal.pas=C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\FrmPrincipal.pas</Transaction>
-  </Transactions>
+  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="Controller"/>
+    <File Path="Controller\ClienteController.pas"/>
+    <File Path="DAO"/>
+    <File Path="DAO\ClienteDAO.pas"/>
+    <File Path="DAO\ConexaoDAO.pas"/>
+    <File Path="Exception"/>
+    <File Path="Exception\CPFException.pas"/>
+    <File Path="Model"/>
+    <File Path="Model\ClienteModel.pas"/>
+    <File Path="View"/>
+    <File Path="View\FrmAdicionar.pas"/>
+    <File Path="View\FrmAdicionar.dfm"/>
+    <File Path="View\FrmEditar.pas"/>
+    <File Path="View\FrmEditar.dfm"/>
+    <File Path="View\FrmPrincipal.pas"/>
+    <File Path="View\FrmPrincipal.dfm"/>
+  </ProjectSortOrder>
 </BorlandProject>
