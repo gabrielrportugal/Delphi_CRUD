@@ -67,20 +67,29 @@ end;
 // Função de inserir dados no banco de dados
 function TClienteDAO.Inserir(const ACliente: TCliente): Boolean;
 begin
-  LSQL := 'INSERT INTO CLIENTE(NOME,CPF,DATA) VALUES (' +
-    QuotedStr(ACliente.Nome) + ',' + QuotedStr(ACliente.CPF) + ',' +
-    'current_date);';
+  try
+    LSQL := 'INSERT INTO CLIENTE(NOME,CPF,DATA) VALUES (' +
+      QuotedStr(ACliente.Nome) + ',' + QuotedStr(ACliente.CPF) + ',' +
+      'current_date);';
+    Result := ExecutarComando(LSQL);
+  except
+    raise Exception.Create('Não foi possível inserir no banco');
+  end;
 
-  Result := ExecutarComando(LSQL);
 end;
 
 // Função de deletar dados do banco de dados
 function TClienteDAO.Remover(const ACliente: TCliente): Boolean;
 begin
-  LSQL := ' DELETE FROM CLIENTE WHERE ID = ' +
-    QuotedStr(IntToStr(ACliente.ID)) + ';';
+  try
+    LSQL := ' DELETE FROM CLIENTE WHERE ID = ' +
+      QuotedStr(IntToStr(ACliente.ID)) + ';';
 
-  Result := ExecutarComando(LSQL);
+    Result := ExecutarComando(LSQL);
+  except
+    raise Exception.Create('Não foi possível deletar do banco');
+
+  end;
 end;
 
 // Função que atualiza lista.

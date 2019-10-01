@@ -53,8 +53,13 @@ procedure TForm3.DeletarClick(Sender: TObject);
 begin
   if (MessageDlg('Deseja remover ? ', mtConfirmation, [mbOK, mbCancel], 0)
     = mrOK) then
-    if FClienteControl.ClienteDAO.Remover(Cliente) then
+    try
+      FClienteControl.ClienteDAO.Remover(Cliente);
       ModalResult := mrOK;
+    except
+      on E: Exception do
+        raise Exception.Create('Ocorreu um erro : ' + E.Message);
+    end;
 end;
 
 procedure TForm3.EditarClick(Sender: TObject);
@@ -64,21 +69,18 @@ begin
       AtualizarClienteEdit;
       ValidarCPF(edtCPF.Text);
       ClienteDAO.CPFDuplicado(FCliente);
-        if (MessageDlg('Cliente editado', mtConfirmation, [mbOK], 0) = mrOK)
-        then
-        begin
-          ClienteDAO.Editar(FCliente);
-          ModalResult := mrOK;
-        end;
+      if (MessageDlg('Cliente editado', mtConfirmation, [mbOK], 0) = mrOK) then
+      begin
+        ClienteDAO.Editar(FCliente);
+        ModalResult := mrOK;
+      end;
     except
       on E: ECpfInvalido do
         raise;
       on E: ECpfDuplicado do
         raise;
-      on E: ECpfNaoAlterado do
-        raise;
       on E: Exception do
-        raise Exception.Create(E.Message);
+        raise Exception.Create('Ocorreu um erro :' + E.Message);
     end;
 
 end;

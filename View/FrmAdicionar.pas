@@ -21,7 +21,6 @@ type
   private
     FClienteControl: TClienteControl;
     FCliente: TCliente;
-    procedure AddCliente(const ANome, ACPF: String);
     { Private declarations }
   public
     { Public declarations }
@@ -39,29 +38,26 @@ implementation
 uses
   UITypes, CPFException;
 
-procedure TForm2.AddCliente(const ANome, ACPF: String);
-begin
-  FCliente.Nome := ANome;
-  FCliente.CPF := ACPF;
-end;
-
 procedure TForm2.AdicionarClick(Sender: TObject);
 begin
   FCliente := TCliente.Create;
   try
-    AddCliente(edtNome.Text, edtCPF.Text);
+    FCliente.Nome := edtNome.Text;
+    FCliente.CPF := edtCPF.Text;
     try
-      FClienteControl.ValidarCPF(edtCPF.Text);
+      FClienteControl.ValidarCPF(FCliente.CPF);
       FClienteControl.ClienteDAO.CPFDuplicado(FCliente);
-      if FClienteControl.ClienteDAO.Inserir(FCliente) then
-        if (MessageDlg('Cliente cadastrado', mtConfirmation, [mbOK], 0) = mrOK)
-        then
-          ModalResult := mrOK;
+      FClienteControl.ClienteDAO.Inserir(FCliente);
+      if (MessageDlg('Cliente cadastrado', mtConfirmation, [mbOK], 0) = mrOK)
+      then
+        ModalResult := mrOK;
     except
       on E: ECpfDuplicado do
         raise;
       on E: ECpfInvalido do
         raise;
+      on E: Exception do
+        raise Exception.Create('Ocorreu um erro ' + E.Message);
     end;
   finally
     FCliente.Free;

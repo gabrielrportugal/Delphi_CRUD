@@ -14,11 +14,6 @@ type
     constructor Create(const AMessage: String = 'CPF Duplicado');
   end;
 
-  ECpfNaoAlterado = class(Exception)
-    constructor Create(const AMessage
-      : String = 'Nenhuma modificação realizada');
-  end;
-
 implementation
 
 { ECpfDuplicado }
@@ -35,11 +30,5 @@ begin
   Self.Message := AMessage;
 end;
 
-{ ECpfNaoAlterado }
-
-constructor ECpfNaoAlterado.Create(const AMessage: String);
-begin
-  Self.Message := AMessage;
-end;
 
 end.

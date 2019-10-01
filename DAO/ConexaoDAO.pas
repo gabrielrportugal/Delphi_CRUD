@@ -78,7 +78,6 @@ begin
   FDQuery.SQL.Clear;
   FDQuery.SQL.Add(ASQL);
   FDQuery.Open;
-  // FDQuery.ExecSQL;
 end;
 
 procedure TConectDAO.InicializarQuery;

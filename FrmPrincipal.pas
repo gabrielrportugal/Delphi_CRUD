@@ -27,7 +27,6 @@ type
     procedure AtualizarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure edtBuscaKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-
   private
     { Private declarations }
     FListaClienteView: TObjectList<TCliente>;
@@ -87,12 +86,11 @@ procedure TForm1.edtBuscaKeyUp(Sender: TObject; var Key: Word;
 begin
   FListaClienteView := FClienteControl.ClienteDAO.BuscarLista(edtBusca.Text);
   ListarListView(FListaClienteView);
-
 end;
 
 procedure TForm1.AtualizarClick(Sender: TObject);
 begin
-  BuscarCliente;;
+  BuscarCliente;
 end;
 
 procedure TForm1.ConfigListView;
@@ -106,7 +104,7 @@ begin
     Align := alClient;
     LListaColuna := Columns.Add;
     LListaColuna.Caption := 'ID';
-    LListaColuna.Width := 50;
+    LListaColuna.Width := 60;
     LListaColuna.Alignment := taLeftJustify;
 
     LListaColuna := Columns.Add;
@@ -121,7 +119,7 @@ begin
 
     LListaColuna := Columns.Add;
     LListaColuna.Caption := 'DATA';
-    LListaColuna.Width := 170;
+    LListaColuna.Width := 160;
     LListaColuna.Alignment := taLeftJustify;
   end;
 end;
@@ -130,9 +128,8 @@ procedure TForm1.BuscarCliente;
 begin
   FListaClienteView := FClienteControl.ClienteDAO.RetornarListaCompleta;
   if FListaClienteView.Count > 0 then
-  begin
     ListarListView(FListaClienteView);
-  end;
+
 end;
 
 procedure TForm1.ListarListView(const ListaClientes: TObjectList<TCliente>);
