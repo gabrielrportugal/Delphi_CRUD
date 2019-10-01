@@ -14,6 +14,7 @@ object Form1: TForm1
   Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -22,7 +23,16 @@ object Form1: TForm1
     Width = 565
     Height = 57
     Align = alTop
+    Color = clMenu
+    ParentBackground = False
     TabOrder = 0
+    object Label1: TLabel
+      Left = 24
+      Top = 22
+      Width = 42
+      Height = 13
+      Caption = 'Pesquisa'
+    end
     object Atualizar: TButton
       Left = 480
       Top = 16
@@ -34,20 +44,13 @@ object Form1: TForm1
       OnClick = AtualizarClick
     end
     object edtBusca: TEdit
-      Left = 24
+      Left = 80
       Top = 19
       Width = 225
       Height = 21
       TabOrder = 1
-    end
-    object Buscar: TButton
-      Left = 264
-      Top = 17
-      Width = 75
-      Height = 25
-      Caption = 'Buscar'
-      TabOrder = 2
-      OnClick = BuscarClick
+      TextHint = 'Nome ou CPF'
+      OnKeyUp = edtBuscaKeyUp
     end
   end
   object ListView1: TListView
@@ -65,6 +68,8 @@ object Form1: TForm1
     Width = 565
     Height = 44
     Align = alBottom
+    Color = clMenu
+    ParentBackground = False
     TabOrder = 2
     object Adicionar: TButton
       Left = 8
@@ -76,15 +81,15 @@ object Form1: TForm1
       TabOrder = 0
       OnClick = AdicionarClick
     end
-  end
-  object Editar: TButton
-    Left = 89
-    Top = 295
-    Width = 75
-    Height = 25
-    Cursor = crHandPoint
-    Caption = 'Editar'
-    TabOrder = 3
-    OnClick = EditarClick
+    object Editar: TButton
+      Left = 89
+      Top = 6
+      Width = 75
+      Height = 25
+      Cursor = crHandPoint
+      Caption = 'Editar'
+      TabOrder = 1
+      OnClick = EditarClick
+    end
   end
 end

@@ -21,7 +21,9 @@ type
     function Inserir(const ACliente: TCliente): Boolean;
     function RetornarListaCompleta: TObjectList<TCliente>;
     function RetornarLista(ASQL: String): TObjectList<TCliente>;
-    function CPFDuplicado(const ACliente: TCliente): Boolean;
+    function CPFDuplicado(const ACliente: TCliente): Boolean; overload;
+    function CPFDuplicado(const ACliente: TCliente; const AStatus: Boolean)
+      : Boolean; overload;
   end;
 
 implementation
@@ -57,11 +59,15 @@ end;
 // Função de editar os dados no banco de dados
 function TClienteDAO.Editar(const ACliente: TCliente): Boolean;
 begin
+  try
   LSQL := 'UPDATE CLIENTE SET NOME = ' + QuotedStr(ACliente.Nome) + ',' +
     ' CPF = ' + QuotedStr(ACliente.CPF) + ' WHERE ID = ' +
     QuotedStr(IntToStr(ACliente.ID));
 
   Result := ExecutarComando(LSQL);
+  except
+    raise Exception.Create('Não foi possível atualizar');
+  end;
 end;
 
 // Função de inserir dados no banco de dados
@@ -130,7 +136,22 @@ end;
 
 function TClienteDAO.CPFDuplicado(const ACliente: TCliente): Boolean;
 begin
+  LSQL := 'SELECT * FROM CLIENTE WHERE CPF = ' + QuotedStr(ACliente.CPF) + ';';
 
+  ExibirDataSet(LSQL);
+
+  if Query.RowsAffected < 0 then
+    Result := True
+  else
+  begin
+    Result := True;
+    raise ECpfDuplicado.Create('CPF Duplicado');
+  end;
+end;
+
+function TClienteDAO.CPFDuplicado(const ACliente: TCliente;
+  const AStatus: Boolean): Boolean;
+begin
   LSQL := 'SELECT * FROM CLIENTE WHERE CPF = ' + QuotedStr(ACliente.CPF) + ';';
 
   ExibirDataSet(LSQL);
@@ -144,14 +165,14 @@ begin
 
     if Query.RowsAffected > 0 then
     begin
-      Result := true;
+      Result := True;
     end
     else
       raise ECpfDuplicado.Create('CPF Duplicado');
   end
   else
   begin
-    Result := true;
+    Result := True;
   end;
 end;
 

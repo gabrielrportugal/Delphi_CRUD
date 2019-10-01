@@ -7,7 +7,8 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
   Vcl.ExtCtrls,
-  FrmEditar, FrmAdicionar, ClienteController;
+  FrmEditar, FrmAdicionar, ClienteController, ClienteModel,
+  System.Generics.Collections;
 
 type
   TForm1 = class(TForm)
@@ -18,20 +19,21 @@ type
     Adicionar: TButton;
     Editar: TButton;
     edtBusca: TEdit;
-    Buscar: TButton;
+    Label1: TLabel;
     procedure AdicionarClick(Sender: TObject);
     procedure EditarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure AtualizarClick(Sender: TObject);
-    procedure BuscarClick(Sender: TObject);
-    procedure AtualizarBusca(AIndice: integer);
-
+    procedure FormShow(Sender: TObject);
+    procedure edtBuscaKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
+    FListaClienteView: TObjectList<TCliente>;
     FClienteControl: TClienteControl;
     procedure ConfigListView;
     procedure BuscarCliente;
+    procedure ListarListView(const ListaClientes: TObjectList<TCliente>);
 
   public
     { Public declarations }
@@ -64,12 +66,12 @@ procedure TForm1.EditarClick(Sender: TObject);
 var
   LFormEditar: TForm3;
 begin
-  if FClienteControl.ListaCliente.Count <= 0 then
-    raise Exception.Create('Não existem clientes cadastrados');
+  if ListView1.ItemIndex = -1 then
+    raise Exception.Create('Não existem clientes selecionados.');
   LFormEditar := TForm3.Create(nil);
   try
     LFormEditar.ClienteControl := FClienteControl;
-    LFormEditar.Indice := ListView1.ItemIndex;
+    LFormEditar.Cliente := FListaClienteView[ListView1.ItemIndex];
     LFormEditar.ShowModal;
   finally
     if LFormEditar.ModalResult = mrOK then
@@ -79,17 +81,11 @@ begin
   end;
 end;
 
-procedure TForm1.AtualizarBusca(AIndice: integer);
-var
-  ListaItem: TListItem;
+procedure TForm1.edtBuscaKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
 begin
-  ListView1.Clear;
-  begin
-    ListaItem := ListView1.Items.Add;
-    ListaItem.Caption := IntToStr(AIndice);
-    ListaItem.SubItems.Add(FClienteControl.ListaCliente[AIndice].Nome);
-    ListaItem.SubItems.Add(FClienteControl.ListaCliente[AIndice].CPF);
-  end;
+  FListaClienteView := FClienteControl.ClienteDAO.BuscarLista(edtBusca.Text);
+  ListarListView(FListaClienteView);
 end;
 
 procedure TForm1.AtualizarClick(Sender: TObject);
@@ -108,55 +104,47 @@ begin
     Align := alClient;
     LListaColuna := Columns.Add;
     LListaColuna.Caption := 'ID';
-    LListaColuna.Width := 50;
+    LListaColuna.Width := 60;
     LListaColuna.Alignment := taLeftJustify;
 
     LListaColuna := Columns.Add;
     LListaColuna.Caption := 'Nome';
-    LListaColuna.Width := 170;
+    LListaColuna.Width := 160;
     LListaColuna.Alignment := taLeftJustify;
 
     LListaColuna := Columns.Add;
     LListaColuna.Caption := 'CPF';
-    LListaColuna.Width := 170;
+    LListaColuna.Width := 160;
     LListaColuna.Alignment := taLeftJustify;
 
     LListaColuna := Columns.Add;
     LListaColuna.Caption := 'DATA';
-    LListaColuna.Width := 170;
+    LListaColuna.Width := 160;
     LListaColuna.Alignment := taLeftJustify;
   end;
 end;
 
-procedure TForm1.BuscarClick(Sender: TObject);
-var
-  temp_I: integer;
+procedure TForm1.BuscarCliente;
 begin
-  try
-    temp_I := FClienteControl.BuscarLista(edtBusca.Text);
-    AtualizarBusca(temp_I);
-  except
-    on E: Exception do
-      raise Exception.Create('Erro ' + E.Message);
-  end;
+  FListaClienteView := FClienteControl.ClienteDAO.RetornarListaCompleta;
+  if FListaClienteView.Count > 0 then
+    ListarListView(FListaClienteView);
+
 end;
 
-procedure TForm1.BuscarCliente;
+procedure TForm1.ListarListView(const ListaClientes: TObjectList<TCliente>);
 var
-  I: integer;
+  I: Integer;
   ListaItem: TListItem;
 begin
-  if FClienteControl.ListaCliente.Count > 0 then
+  ListView1.Clear;
+  for I := 0 to FListaClienteView.Count - 1 do
   begin
-    ListView1.Clear;
-    for I := 0 to FClienteControl.ListaCliente.Count - 1 do
-    begin
-      ListaItem := ListView1.Items.Add;
-      ListaItem.Caption := IntToStr(I);
-      ListaItem.SubItems.Add(FClienteControl.ListaCliente[I].Nome);
-      ListaItem.SubItems.Add(FClienteControl.ListaCliente[I].CPF);
-      ListaItem.SubItems.Add(DateToStr(Now));
-    end;
+    ListaItem := ListView1.Items.Add;
+    ListaItem.Caption := IntToStr(FListaClienteView[I].ID);
+    ListaItem.SubItems.Add(FListaClienteView[I].Nome);
+    ListaItem.SubItems.Add(FListaClienteView[I].CPF);
+    ListaItem.SubItems.Add(DateToStr(FListaClienteView[I].Data));
   end;
 end;
 
@@ -168,7 +156,13 @@ end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
+  FreeAndNil(FListaClienteView);
   FClienteControl.Free;
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  BuscarCliente;
 end;
 
 end.

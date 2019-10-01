@@ -68,7 +68,7 @@ begin
     try
       AtualizarClienteEdit;
       ValidarCPF(edtCPF.Text);
-      ClienteDAO.CPFDuplicado(FCliente);
+      ClienteDAO.CPFDuplicado(FCliente, true);
       if (MessageDlg('Cliente editado', mtConfirmation, [mbOK], 0) = mrOK) then
       begin
         ClienteDAO.Editar(FCliente);
