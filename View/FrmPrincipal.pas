@@ -96,6 +96,7 @@ end;
 procedure TForm1.AtualizarClick(Sender: TObject);
 begin
   BuscarCliente;
+  edtBusca.Text := '';
 end;
 
 //Configurações do ListView do Form Principal
