@@ -1,5 +1,7 @@
 unit CPFException;
 
+{ Exceções criadas para tratar erros na validação do CPF}
+
 interface
 
 uses

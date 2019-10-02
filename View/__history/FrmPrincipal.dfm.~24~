@@ -1,0 +1,155 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro de Clientes'
+  ClientHeight = 388
+  ClientWidth = 630
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 630
+    Height = 57
+    Align = alTop
+    Color = clMenu
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    DesignSize = (
+      630
+      57)
+    object Label1: TLabel
+      Left = 22
+      Top = 20
+      Width = 57
+      Height = 16
+      Caption = 'Pesquisa'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Verdana'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Atualizar: TButton
+      Left = 537
+      Top = 14
+      Width = 80
+      Height = 30
+      Cursor = crHandPoint
+      Anchors = [akTop, akRight]
+      Caption = 'Atualizar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Verdana'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnClick = AtualizarClick
+    end
+    object edtBusca: TEdit
+      Left = 85
+      Top = 17
+      Width = 259
+      Height = 24
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Verdana'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      TextHint = 'Nome ou CPF'
+      OnKeyUp = edtBuscaKeyUp
+    end
+    object Button1: TButton
+      Left = 408
+      Top = 17
+      Width = 75
+      Height = 25
+      Caption = 'Button1'
+      TabOrder = 2
+      OnClick = Button1Click
+    end
+  end
+  object ListView1: TListView
+    Left = 0
+    Top = 57
+    Width = 630
+    Height = 287
+    Align = alClient
+    Columns = <>
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Verdana'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    OnDblClick = ListView1DblClick
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 344
+    Width = 630
+    Height = 44
+    Align = alBottom
+    Color = clMenu
+    ParentBackground = False
+    TabOrder = 2
+    DesignSize = (
+      630
+      44)
+    object Adicionar: TButton
+      Left = 8
+      Top = 6
+      Width = 80
+      Height = 30
+      Cursor = crHandPoint
+      Caption = 'Adicionar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Verdana'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnClick = AdicionarClick
+    end
+    object Editar: TButton
+      Left = 537
+      Top = 6
+      Width = 80
+      Height = 30
+      Cursor = crHandPoint
+      Anchors = [akTop, akRight]
+      Caption = 'Editar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Verdana'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      OnClick = EditarClick
+    end
+  end
+end

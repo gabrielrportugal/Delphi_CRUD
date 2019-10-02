@@ -70,7 +70,6 @@ object Form3: TForm3
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    ExplicitHeight = 177
     object Label1: TLabel
       Left = 21
       Top = 59

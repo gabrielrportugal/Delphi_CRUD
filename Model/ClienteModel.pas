@@ -1,6 +1,11 @@
 unit ClienteModel;
 
+{Classe com os atributos de um Cliente (ID,Nome,CPF, Data de Cadastro)}
+
 interface
+
+uses
+  System.Classes;
 
 type
   TCliente = class
