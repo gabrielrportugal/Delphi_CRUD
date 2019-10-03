@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Cadastro de Clientes'
-  ClientHeight = 378
+  ClientHeight = 388
   ClientWidth = 630
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -32,7 +32,6 @@ object Form1: TForm1
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 565
     DesignSize = (
       630
       57)
@@ -86,7 +85,7 @@ object Form1: TForm1
     Left = 0
     Top = 57
     Width = 630
-    Height = 277
+    Height = 287
     Align = alClient
     Columns = <>
     Font.Charset = ANSI_CHARSET
@@ -96,12 +95,11 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 565
-    ExplicitHeight = 232
+    OnDblClick = ListView1DblClick
   end
   object Panel2: TPanel
     Left = 0
-    Top = 334
+    Top = 344
     Width = 630
     Height = 44
     Align = alBottom

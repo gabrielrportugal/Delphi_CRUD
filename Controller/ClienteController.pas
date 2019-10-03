@@ -39,7 +39,6 @@ end;
 
 // Função que validará o CPF
 function TClienteControl.ValidarCPF(ACPF: String): Boolean;
-
 var
   dig10, dig11: string;
   s, I, r, peso: integer;
@@ -54,7 +53,6 @@ begin
   begin
     Result := false;
     raise ECpfInvalido.Create;
-    exit;
   end;
 
   // try - protege o código para eventuais erros de conversão de tipo na função StrToInt

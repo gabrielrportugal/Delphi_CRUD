@@ -1,12 +1,12 @@
 unit ClienteController;
 
-{ Controlador que possui uma property do ClienteDAO para a View poder utilizar}
+{ Controlador que possui uma property do ClienteDAO para a View poder utilizar }
 
 interface
 
 uses
   System.Generics.Collections, System.SysUtils, Winapi.Messages,
-  Winapi.Windows, ClienteDAO;
+  Winapi.Windows, ClienteDAO, System.Classes;
 
 type
   TClienteControl = class
@@ -39,9 +39,11 @@ end;
 
 // Função que validará o CPF
 function TClienteControl.ValidarCPF(ACPF: String): Boolean;
+
 var
   dig10, dig11: string;
   s, I, r, peso: integer;
+
 begin
   // length - retorna o tamanho da string (ACPF é um número formado por 11 dígitos)
   if ((ACPF = '00000000000') or (ACPF = '11111111111') or (ACPF = '22222222222')

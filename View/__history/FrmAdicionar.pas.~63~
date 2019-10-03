@@ -18,6 +18,7 @@ type
     Label2: TLabel;
     Adicionar: TButton;
     procedure AdicionarClick(Sender: TObject);
+    procedure EventoController(Sender: TObject);
   private
     FClienteControl: TClienteControl;
     FCliente: TCliente;
@@ -38,6 +39,8 @@ implementation
 uses
   UITypes, CPFException;
 
+{ Método do clique do botão adicionar que insere os dados no
+  banco de dados através do controlador }
 procedure TForm2.AdicionarClick(Sender: TObject);
 begin
   FCliente := TCliente.Create;
@@ -55,13 +58,19 @@ begin
       on E: ECpfDuplicado do
         raise;
       on E: ECpfInvalido do
-        raise;
+        Sleep(1);
       on E: Exception do
         raise Exception.Create('Ocorreu um erro ' + E.Message);
     end;
   finally
     FCliente.Free;
   end;
+  Sleep(1);
+end;
+
+procedure TForm2.EventoController(Sender: TObject);
+begin
+  ShowMessage('Nome registrado');
 end;
 
 end.
