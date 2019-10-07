@@ -41,10 +41,8 @@ end;
 function TClienteControl.ValidarCPF(ACPF: String): Boolean;
 var
   dig10, dig11: string;
-  s, I, r, peso: integer;
-
+  S, I, R, peso: integer;
 begin
-  // length - retorna o tamanho da string (ACPF é um número formado por 11 dígitos)
   if ((ACPF = '00000000000') or (ACPF = '11111111111') or (ACPF = '22222222222')
     or (ACPF = '33333333333') or (ACPF = '44444444444') or
     (ACPF = '55555555555') or (ACPF = '66666666666') or (ACPF = '77777777777')
@@ -54,39 +52,31 @@ begin
     Result := false;
     raise ECpfInvalido.Create;
   end;
-
-  // try - protege o código para eventuais erros de conversão de tipo na função StrToInt
   try
-    { *-- Cálculo do 1o. Digito Verificador --* }
-    s := 0;
+    S := 0;
     peso := 10;
     for I := 1 to 9 do
     begin
-      // StrToInt converte o i-ésimo caractere do ACPF em um número
-      s := s + (StrToInt(ACPF[I]) * peso);
+      S := S + (StrToInt(ACPF[I]) * peso);
       peso := peso - 1;
     end;
-    r := 11 - (s mod 11);
-    if ((r = 10) or (r = 11)) then
+    R := 11 - (S mod 11);
+    if ((R = 10) or (R = 11)) then
       dig10 := '0'
     else
-      str(r: 1, dig10); // converte um número no respectivo caractere numérico
-
-    { *-- Cálculo do 2o. Digito Verificador --* }
-    s := 0;
+      str(R: 1, dig10);
+    S := 0;
     peso := 11;
     for I := 1 to 10 do
     begin
-      s := s + (StrToInt(ACPF[I]) * peso);
+      S := S + (StrToInt(ACPF[I]) * peso);
       peso := peso - 1;
     end;
-    r := 11 - (s mod 11);
-    if ((r = 10) or (r = 11)) then
+    R := 11 - (S mod 11);
+    if ((R = 10) or (R = 11)) then
       dig11 := '0'
     else
-      str(r: 1, dig11);
-
-    { Verifica se os digitos calculados conferem com os digitos informados. }
+      str(R: 1, dig11);
     if ((dig10 = ACPF[10]) and (dig11 = ACPF[11])) then
       Result := true
     else

@@ -10,14 +10,14 @@ uses
 
 type
   TFormularioAdicionar = class(TForm)
-    Panel1: TPanel;
-    Panel2: TPanel;
+    PainelCampos: TPanel;
+    PainelAcoes: TPanel;
     edtNome: TEdit;
     edtCPF: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Adicionar: TButton;
-    procedure AdicionarClick(Sender: TObject);
+    lblNome: TLabel;
+    lblCPF: TLabel;
+    btnAdicionar: TButton;
+    procedure btnAdicionarClick(Sender: TObject);
     procedure EventoController(Sender: TObject);
   private
     FClienteControl: TClienteControl;
@@ -41,7 +41,7 @@ uses
 
 { Método do clique do botão adicionar que insere os dados no
   banco de dados através do controlador }
-procedure TFormularioAdicionar.AdicionarClick(Sender: TObject);
+procedure TFormularioAdicionar.btnAdicionarClick(Sender: TObject);
 begin
   FCliente := TCliente.Create;
   try

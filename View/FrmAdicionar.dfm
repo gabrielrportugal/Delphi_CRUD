@@ -14,14 +14,14 @@ object FormularioAdicionar: TFormularioAdicionar
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
+  object PainelCampos: TPanel
     Left = 0
     Top = 0
     Width = 318
     Height = 184
     Align = alClient
     TabOrder = 0
-    object Label1: TLabel
+    object lblNome: TLabel
       Left = 24
       Top = 59
       Width = 42
@@ -34,7 +34,7 @@ object FormularioAdicionar: TFormularioAdicionar
       Font.Style = []
       ParentFont = False
     end
-    object Label2: TLabel
+    object lblCPF: TLabel
       Left = 32
       Top = 109
       Width = 31
@@ -76,7 +76,7 @@ object FormularioAdicionar: TFormularioAdicionar
       TextHint = 'Ex : 17621076780'
     end
   end
-  object Panel2: TPanel
+  object PainelAcoes: TPanel
     Left = 0
     Top = 184
     Width = 318
@@ -86,7 +86,7 @@ object FormularioAdicionar: TFormularioAdicionar
     DesignSize = (
       318
       46)
-    object Adicionar: TButton
+    object btnAdicionar: TButton
       Left = 224
       Top = 6
       Width = 80
@@ -100,7 +100,7 @@ object FormularioAdicionar: TFormularioAdicionar
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      OnClick = AdicionarClick
+      OnClick = btnAdicionarClick
     end
   end
 end

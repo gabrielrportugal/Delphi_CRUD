@@ -17,7 +17,7 @@ object FormularioPrincipal: TFormularioPrincipal
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
+  object PainelPesquisa: TPanel
     Left = 0
     Top = 0
     Width = 630
@@ -35,7 +35,7 @@ object FormularioPrincipal: TFormularioPrincipal
     DesignSize = (
       630
       57)
-    object Label1: TLabel
+    object lblPesquisa: TLabel
       Left = 22
       Top = 20
       Width = 57
@@ -48,7 +48,7 @@ object FormularioPrincipal: TFormularioPrincipal
       Font.Style = []
       ParentFont = False
     end
-    object Atualizar: TButton
+    object btnAtualizar: TButton
       Left = 537
       Top = 14
       Width = 80
@@ -63,7 +63,7 @@ object FormularioPrincipal: TFormularioPrincipal
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      OnClick = AtualizarClick
+      OnClick = btnAtualizarClick
     end
     object edtBusca: TEdit
       Left = 85
@@ -97,7 +97,7 @@ object FormularioPrincipal: TFormularioPrincipal
     TabOrder = 1
     OnDblClick = ListView1DblClick
   end
-  object Panel2: TPanel
+  object PainelAcoes: TPanel
     Left = 0
     Top = 367
     Width = 630
@@ -109,7 +109,7 @@ object FormularioPrincipal: TFormularioPrincipal
     DesignSize = (
       630
       44)
-    object Adicionar: TButton
+    object btnAdicionar: TButton
       Left = 8
       Top = 6
       Width = 80
@@ -123,9 +123,9 @@ object FormularioPrincipal: TFormularioPrincipal
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      OnClick = AdicionarClick
+      OnClick = btnAdicionarClick
     end
-    object Editar: TButton
+    object btnEditar: TButton
       Left = 537
       Top = 6
       Width = 80
@@ -140,7 +140,7 @@ object FormularioPrincipal: TFormularioPrincipal
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      OnClick = EditarClick
+      OnClick = btnEditarClick
     end
   end
 end

@@ -5,25 +5,28 @@ interface
 { Implementar funções do CRUD }
 
 uses
-  ConexaoDAO, ClienteModel, System.Generics.Collections;
+  ConexaoDAO, ClienteModel, System.Generics.Collections, System.Classes;
 
 type
   TClienteDAO = class(TConectDAO)
   private
     FListaCliente: TObjectList<TCliente>;
+    FOnAlteracaoRealizada: TNotifyEvent;
   public
     LSQL: String;
     constructor Create;
     destructor Destroy; override;
     function Remover(const ACliente: TCliente): Boolean;
     function Editar(const ACliente: TCliente): Boolean;
-    function BuscarLista(ANome: String): TObjectList<TCliente>;
+    function BuscarLista(const ANome: String): TObjectList<TCliente>;
     function Inserir(const ACliente: TCliente): Boolean;
     function RetornarListaCompleta: TObjectList<TCliente>;
-    function RetornarLista(ASQL: String): TObjectList<TCliente>;
+    function RetornarLista(const ASQL: String): TObjectList<TCliente>;
     function CPFDuplicado(const ACliente: TCliente): Boolean; overload;
     function CPFDuplicado(const ACliente: TCliente; const AStatus: Boolean)
       : Boolean; overload;
+    property OnAlteracaoRealizada: TNotifyEvent read FOnAlteracaoRealizada
+      write FOnAlteracaoRealizada;
   end;
 
 implementation
@@ -33,7 +36,7 @@ uses
 
 { TClienteDAO }
 
-function TClienteDAO.BuscarLista(ANome: String): TObjectList<TCliente>;
+function TClienteDAO.BuscarLista(const ANome: String): TObjectList<TCliente>;
 begin
   LSQL := 'SELECT ID,NOME,CPF,DATA FROM CLIENTE WHERE NOME LIKE ' +
     QuotedStr('%' + ANome + '%') + ' OR CPF LIKE ' +
@@ -64,7 +67,8 @@ begin
       ' CPF = ' + QuotedStr(ACliente.CPF) + ' WHERE ID = ' +
       QuotedStr(IntToStr(ACliente.ID));
 
-    Result := ExecutarComando(LSQL);
+    Result := ExecutarComandoSQL(LSQL);
+    FOnAlteracaoRealizada(Self);
   except
     raise Exception.Create('Não foi possível atualizar');
   end;
@@ -77,7 +81,8 @@ begin
     LSQL := 'INSERT INTO CLIENTE(NOME,CPF,DATA) VALUES (' +
       QuotedStr(ACliente.Nome) + ',' + QuotedStr(ACliente.CPF) + ',' +
       'current_date);';
-    Result := ExecutarComando(LSQL);
+    Result := ExecutarComandoSQL(LSQL);
+    FOnAlteracaoRealizada(Self);
   except
     raise Exception.Create('Não foi possível inserir no banco');
   end;
@@ -91,7 +96,8 @@ begin
     LSQL := ' DELETE FROM CLIENTE WHERE ID = ' +
       QuotedStr(IntToStr(ACliente.ID)) + ';';
 
-    Result := ExecutarComando(LSQL);
+    Result := ExecutarComandoSQL(LSQL);
+    FOnAlteracaoRealizada(Self);
   except
     raise Exception.Create('Não foi possível deletar do banco');
 
@@ -99,7 +105,7 @@ begin
 end;
 
 // Função que atualiza lista.
-function TClienteDAO.RetornarLista(ASQL: String): TObjectList<TCliente>;
+function TClienteDAO.RetornarLista(const ASQL: String): TObjectList<TCliente>;
 var
   I: integer;
 begin

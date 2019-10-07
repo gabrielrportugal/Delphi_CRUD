@@ -12,19 +12,19 @@ uses
 
 type
   TFormularioPrincipal = class(TForm)
-    Panel1: TPanel;
+    PainelPesquisa: TPanel;
     ListView1: TListView;
-    Panel2: TPanel;
-    Atualizar: TButton;
-    Adicionar: TButton;
-    Editar: TButton;
+    PainelAcoes: TPanel;
+    btnAtualizar: TButton;
+    btnAdicionar: TButton;
+    btnEditar: TButton;
     edtBusca: TEdit;
-    Label1: TLabel;
-    procedure AdicionarClick(Sender: TObject);
-    procedure EditarClick(Sender: TObject);
+    lblPesquisa: TLabel;
+    procedure btnAdicionarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure AtualizarClick(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure edtBuscaKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ListView1DblClick(Sender: TObject);
@@ -32,10 +32,10 @@ type
     { Private declarations }
     FListaClienteView: TObjectList<TCliente>;
     FClienteControl: TClienteControl;
-    procedure ConfigListView;
+    procedure ConfigurarListView;
     procedure BuscarCliente;
-    procedure ListarListView(const ListaClientes: TObjectList<TCliente>);
-
+    procedure CarregarListView(const ListaClientes: TObjectList<TCliente>);
+    procedure EventoAlteracaoRealizada(Sender: TObject);
   public
     { Public declarations }
   end;
@@ -48,7 +48,7 @@ implementation
 {$R *.dfm}
 
 // Clique do botão Adicionar (Exibe o Form de Adicionar um novo cliente)
-procedure TFormularioPrincipal.AdicionarClick(Sender: TObject);
+procedure TFormularioPrincipal.btnAdicionarClick(Sender: TObject);
 var
   LFormAdicionar: TFormularioAdicionar;
 begin
@@ -65,7 +65,7 @@ begin
 end;
 
 // Clique do botão Editar (Exibe o Form Editar, passando a instância do controlador)
-procedure TFormularioPrincipal.EditarClick(Sender: TObject);
+procedure TFormularioPrincipal.btnEditarClick(Sender: TObject);
 var
   LFormEditar: TFormularioEditar;
 begin
@@ -89,18 +89,25 @@ procedure TFormularioPrincipal.edtBuscaKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   FListaClienteView := FClienteControl.ClienteDAO.BuscarLista(edtBusca.Text);
-  ListarListView(FListaClienteView);
+  CarregarListView(FListaClienteView);
+end;
+
+{ Evento criado com o intuito de aprendizado e é chamado na classe TClienteDAO
+  exibe uma mensagem ao realizar alguma alteração no banco de dados}
+procedure TFormularioPrincipal.EventoAlteracaoRealizada(Sender: TObject);
+begin
+  ShowMessage('Banco de dados atualizado');
 end;
 
 // Clique no botão Atualizar (Atualiza o ListView com uma nova busca ao banco)
-procedure TFormularioPrincipal.AtualizarClick(Sender: TObject);
+procedure TFormularioPrincipal.btnAtualizarClick(Sender: TObject);
 begin
   BuscarCliente;
   edtBusca.Text := '';
 end;
 
-//Configurações do ListView do Form Principal
-procedure TFormularioPrincipal.ConfigListView;
+// Configurações do ListView do Form Principal
+procedure TFormularioPrincipal.ConfigurarListView;
 var
   LListaColuna: TListColumn;
 begin
@@ -136,12 +143,13 @@ procedure TFormularioPrincipal.BuscarCliente;
 begin
   FListaClienteView := FClienteControl.ClienteDAO.RetornarListaCompleta;
   if FListaClienteView.Count > 0 then
-    ListarListView(FListaClienteView);
+    CarregarListView(FListaClienteView);
 
 end;
 
 // Método que insere no List View os dados da lista de clientes
-procedure TFormularioPrincipal.ListarListView(const ListaClientes: TObjectList<TCliente>);
+procedure TFormularioPrincipal.CarregarListView(const ListaClientes
+  : TObjectList<TCliente>);
 var
   I: Integer;
   ListaItem: TListItem;
@@ -160,17 +168,18 @@ end;
 // Evento de duplo clique que chama o evento EditarClick que exibe o form de edição
 procedure TFormularioPrincipal.ListView1DblClick(Sender: TObject);
 begin
-  EditarClick(ListView1);
+  btnEditarClick(ListView1);
 end;
 
-//Ao criar é criada uma instância do controlador e configurada o list view
+// Ao criar é criada uma instância do controlador e configurada o list view
 procedure TFormularioPrincipal.FormCreate(Sender: TObject);
 begin
   FClienteControl := TClienteControl.Create;
-  ConfigListView;
+  FClienteControl.ClienteDAO.OnAlteracaoRealizada := EventoAlteracaoRealizada;
+  ConfigurarListView;
 end;
 
-//Ao destruir a lista e a instância do controlador são destruidas
+// Ao destruir a lista e a instância do controlador são destruidas
 procedure TFormularioPrincipal.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(FListaClienteView);

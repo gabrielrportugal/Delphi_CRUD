@@ -9,27 +9,27 @@ uses
 
 type
   ECpfInvalido = class(Exception)
-    constructor Create(const AMessage: String = 'CPF Invalido');
+    constructor Create(const AMessageErro: String = 'CPF Invalido');
   end;
 
   ECpfDuplicado = class(Exception)
-    constructor Create(const AMessage: String = 'CPF Duplicado');
+    constructor Create(const AMessageErro: String = 'CPF Duplicado');
   end;
 
 implementation
 
 { ECpfDuplicado }
 
-constructor ECpfDuplicado.Create(const AMessage: String = 'CPF Duplicado');
+constructor ECpfDuplicado.Create(const AMessageErro: String = 'CPF Duplicado');
 begin
-  Self.Message := AMessage;
+  Self.Message := AMessageErro;
 end;
 
 { ECpfInvalido }
 
 constructor ECpfInvalido.Create;
 begin
-  Self.Message := AMessage;
+  Self.Message := AMessageErro;
 end;
 
 

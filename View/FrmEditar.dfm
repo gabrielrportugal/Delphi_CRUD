@@ -15,7 +15,7 @@ object FormularioEditar: TFormularioEditar
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
+  object PainelAcoes: TPanel
     Left = 0
     Top = 184
     Width = 318
@@ -25,7 +25,7 @@ object FormularioEditar: TFormularioEditar
     DesignSize = (
       318
       46)
-    object Editar: TButton
+    object btnEditar: TButton
       Left = 230
       Top = 6
       Width = 80
@@ -39,9 +39,9 @@ object FormularioEditar: TFormularioEditar
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      OnClick = EditarClick
+      OnClick = btnEditarClick
     end
-    object Deletar: TButton
+    object btnDeletar: TButton
       Left = 8
       Top = 6
       Width = 80
@@ -54,10 +54,10 @@ object FormularioEditar: TFormularioEditar
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      OnClick = DeletarClick
+      OnClick = btnDeletarClick
     end
   end
-  object Panel2: TPanel
+  object PainelCampos: TPanel
     Left = 0
     Top = 0
     Width = 318
@@ -70,7 +70,7 @@ object FormularioEditar: TFormularioEditar
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    object Label1: TLabel
+    object lblNome: TLabel
       Left = 21
       Top = 59
       Width = 42
@@ -83,7 +83,7 @@ object FormularioEditar: TFormularioEditar
       Font.Style = []
       ParentFont = False
     end
-    object Label2: TLabel
+    object lblCPF: TLabel
       Left = 32
       Top = 109
       Width = 31

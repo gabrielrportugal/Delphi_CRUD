@@ -16,7 +16,7 @@ type
     procedure ConectarBanco;
     procedure InicializarQuery;
   public
-    function ExecutarComando(const ASQL: string): Boolean;
+    function ExecutarComandoSQL(const ASQL: string): Boolean;
     procedure ExibirDataSet(const ASQL: string);
     constructor Create;
     destructor Destroy; override;
@@ -58,7 +58,7 @@ begin
   inherited;
 end;
 
-function TConectDAO.ExecutarComando(const ASQL: string): Boolean;
+function TConectDAO.ExecutarComandoSQL(const ASQL: string): Boolean;
 begin
   try
     FDQuery.SQL.Clear;

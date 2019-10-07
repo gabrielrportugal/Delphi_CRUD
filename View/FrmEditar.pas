@@ -10,21 +10,21 @@ uses
 
 type
   TFormularioEditar = class(TForm)
-    Panel1: TPanel;
-    Panel2: TPanel;
+    PainelAcoes: TPanel;
+    PainelCampos: TPanel;
     edtCPF: TEdit;
     edtNome: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Editar: TButton;
-    Deletar: TButton;
-    procedure DeletarClick(Sender: TObject);
-    procedure EditarClick(Sender: TObject);
+    lblNome: TLabel;
+    lblCPF: TLabel;
+    btnEditar: TButton;
+    btnDeletar: TButton;
+    procedure btnDeletarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     FClienteControl: TClienteControl;
     FCliente: TCliente;
-    procedure AtualizarClienteEdit;
+    procedure AtualizarEditCliente;
     { Private declarations }
   public
     property ClienteControl: TClienteControl read FClienteControl
@@ -43,18 +43,19 @@ uses
 
 {$R *.dfm}
 
-//Método que insere no objeto FCliente os dados digitados nos Edits
-procedure TFormularioEditar.AtualizarClienteEdit;
+// Método que insere no objeto FCliente os dados digitados nos Edits
+procedure TFormularioEditar.AtualizarEditCliente;
 begin
   FCliente.Nome := edtNome.Text;
   FCliente.CPF := edtCPF.Text;
 end;
 
-//Clique no botão deletar que exclui um item do banco de dados
-procedure TFormularioEditar.DeletarClick(Sender: TObject);
+// Clique no botão deletar que exclui um item do banco de dados
+procedure TFormularioEditar.btnDeletarClick(Sender: TObject);
 begin
   if (MessageDlg('Deseja remover ? ', mtConfirmation, [mbOK, mbCancel], 0)
     = mrOK) then
+  begin
     try
       FClienteControl.ClienteDAO.Remover(Cliente);
       ModalResult := mrOK;
@@ -62,14 +63,15 @@ begin
       on E: Exception do
         raise Exception.Create('Ocorreu um erro : ' + E.Message);
     end;
+  end;
 end;
 
-//Clique no botão editar que modifica os dados no banco através do controlador
-procedure TFormularioEditar.EditarClick(Sender: TObject);
+// Clique no botão editar que modifica os dados no banco através do controlador
+procedure TFormularioEditar.btnEditarClick(Sender: TObject);
 begin
   with FClienteControl do
     try
-      AtualizarClienteEdit;
+      AtualizarEditCliente;
       ValidarCPF(edtCPF.Text);
       ClienteDAO.CPFDuplicado(FCliente, true);
       if (MessageDlg('Cliente editado', mtConfirmation, [mbOK], 0) = mrOK) then
@@ -88,7 +90,7 @@ begin
 
 end;
 
-//Ao exibir o Form, os dados do objeto FCliente são carregados no Edit.
+// Ao exibir o Form, os dados do objeto FCliente são carregados no Edit.
 procedure TFormularioEditar.FormShow(Sender: TObject);
 begin
   edtNome.Text := FCliente.Nome;
