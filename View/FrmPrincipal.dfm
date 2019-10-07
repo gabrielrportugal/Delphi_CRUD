@@ -1,4 +1,4 @@
-object Form1: TForm1
+object FormularioPrincipal: TFormularioPrincipal
   Left = 0
   Top = 0
   Caption = 'Cadastro de Clientes'
@@ -96,7 +96,6 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 1
     OnDblClick = ListView1DblClick
-    ExplicitHeight = 287
   end
   object Panel2: TPanel
     Left = 0
@@ -107,7 +106,6 @@ object Form1: TForm1
     Color = clMenu
     ParentBackground = False
     TabOrder = 2
-    ExplicitTop = 344
     DesignSize = (
       630
       44)

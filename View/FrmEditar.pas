@@ -9,7 +9,7 @@ uses
   ClienteController, ClienteModel, CPFException;
 
 type
-  TForm3 = class(TForm)
+  TFormularioEditar = class(TForm)
     Panel1: TPanel;
     Panel2: TPanel;
     edtCPF: TEdit;
@@ -34,7 +34,7 @@ type
   end;
 
 var
-  Form3: TForm3;
+  FormularioEditar: TFormularioEditar;
 
 implementation
 
@@ -44,14 +44,14 @@ uses
 {$R *.dfm}
 
 //Método que insere no objeto FCliente os dados digitados nos Edits
-procedure TForm3.AtualizarClienteEdit;
+procedure TFormularioEditar.AtualizarClienteEdit;
 begin
   FCliente.Nome := edtNome.Text;
   FCliente.CPF := edtCPF.Text;
 end;
 
 //Clique no botão deletar que exclui um item do banco de dados
-procedure TForm3.DeletarClick(Sender: TObject);
+procedure TFormularioEditar.DeletarClick(Sender: TObject);
 begin
   if (MessageDlg('Deseja remover ? ', mtConfirmation, [mbOK, mbCancel], 0)
     = mrOK) then
@@ -65,7 +65,7 @@ begin
 end;
 
 //Clique no botão editar que modifica os dados no banco através do controlador
-procedure TForm3.EditarClick(Sender: TObject);
+procedure TFormularioEditar.EditarClick(Sender: TObject);
 begin
   with FClienteControl do
     try
@@ -89,7 +89,7 @@ begin
 end;
 
 //Ao exibir o Form, os dados do objeto FCliente são carregados no Edit.
-procedure TForm3.FormShow(Sender: TObject);
+procedure TFormularioEditar.FormShow(Sender: TObject);
 begin
   edtNome.Text := FCliente.Nome;
   edtCPF.Text := FCliente.CPF;

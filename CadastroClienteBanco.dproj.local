@@ -2,30 +2,30 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2019/08/14 13:41:59.000.844,=C:\Users\Dev\Documents\Delphi\Unit1.pas</Transaction>
-    <Transaction>2019/08/14 13:45:42.000.671,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\FrmPrincipal.pas=C:\Users\Dev\Documents\Delphi\Unit1.pas</Transaction>
-    <Transaction>2019/08/14 13:45:42.000.671,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\FrmPrincipal.dfm=C:\Users\Dev\Documents\Delphi\Unit1.dfm</Transaction>
-    <Transaction>2019/08/14 13:46:01.000.303,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Cadastro.dproj=C:\Users\Dev\Documents\Delphi\Project1.dproj</Transaction>
+    <Transaction>2019/08/14 13:45:42.000.671,C:\Users\Dev\Documents\Delphi\Unit1.dfm=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\FrmPrincipal.dfm</Transaction>
+    <Transaction>2019/08/14 13:45:42.000.671,C:\Users\Dev\Documents\Delphi\Unit1.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\FrmPrincipal.pas</Transaction>
+    <Transaction>2019/08/14 13:46:01.000.303,C:\Users\Dev\Documents\Delphi\Project1.dproj=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Cadastro.dproj</Transaction>
     <Transaction>2019/08/14 13:46:15.000.146,=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit2.pas</Transaction>
-    <Transaction>2019/08/14 13:49:10.000.147,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\View\FrmAdicionar.dfm=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit2.dfm</Transaction>
-    <Transaction>2019/08/14 13:49:10.000.147,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\View\FrmAdicionar.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit2.pas</Transaction>
+    <Transaction>2019/08/14 13:49:10.000.147,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit2.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\View\FrmAdicionar.pas</Transaction>
+    <Transaction>2019/08/14 13:49:10.000.147,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit2.dfm=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\View\FrmAdicionar.dfm</Transaction>
     <Transaction>2019/08/14 13:49:30.000.348,=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit3.pas</Transaction>
     <Transaction>2019/08/14 13:49:54.000.074,=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit3.pas</Transaction>
-    <Transaction>2019/08/14 13:52:52.000.325,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\View\FrmEditar.dfm=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit3.dfm</Transaction>
-    <Transaction>2019/08/14 13:52:52.000.325,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\View\FrmEditar.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit3.pas</Transaction>
+    <Transaction>2019/08/14 13:52:52.000.325,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit3.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\View\FrmEditar.pas</Transaction>
+    <Transaction>2019/08/14 13:52:52.000.325,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit3.dfm=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\View\FrmEditar.dfm</Transaction>
     <Transaction>2019/08/14 14:13:52.000.473,=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit1.pas</Transaction>
-    <Transaction>2019/08/14 14:19:14.000.561,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Model\ClienteModel.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit1.pas</Transaction>
+    <Transaction>2019/08/14 14:19:14.000.561,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit1.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Model\ClienteModel.pas</Transaction>
     <Transaction>2019/08/14 14:20:11.000.575,=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit1.pas</Transaction>
-    <Transaction>2019/08/14 14:20:57.000.431,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Controller\ClienteController.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit1.pas</Transaction>
-    <Transaction>2019/08/16 12:17:01.000.826,C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Cadastro.dproj=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\CadastroClienteBanco.dproj</Transaction>
+    <Transaction>2019/08/14 14:20:57.000.431,C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Unit1.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\CRUD 3.0\Controller\ClienteController.pas</Transaction>
+    <Transaction>2019/08/16 12:17:01.000.826,C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\CadastroClienteBanco.dproj=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Cadastro.dproj</Transaction>
     <Transaction>2019/08/16 12:17:11.000.037,=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Unit1.pas</Transaction>
-    <Transaction>2019/08/16 12:21:25.000.664,C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Unit1.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\DAO\ConexaoDAO.pas</Transaction>
+    <Transaction>2019/08/16 12:21:25.000.664,C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\DAO\ConexaoDAO.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Unit1.pas</Transaction>
     <Transaction>2019/08/16 12:27:19.000.111,=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Unit1.pas</Transaction>
-    <Transaction>2019/08/16 12:28:42.000.408,C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Unit1.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\DAO\ClienteDAO.pas</Transaction>
+    <Transaction>2019/08/16 12:28:42.000.408,C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\DAO\ClienteDAO.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Unit1.pas</Transaction>
     <Transaction>2019/08/26 10:27:55.000.461,=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Unit1.pas</Transaction>
-    <Transaction>2019/08/26 10:30:36.000.168,C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Unit1.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Exception\CPFInvalido.pas</Transaction>
-    <Transaction>2019/08/26 10:31:31.000.261,C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Exception\CPFInvalido.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Exception\CPFException.pas</Transaction>
-    <Transaction>2019/10/01 10:40:29.000.776,C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\FrmPrincipal.dfm=C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\View\FrmPrincipal.dfm</Transaction>
-    <Transaction>2019/10/01 10:40:29.000.776,C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\FrmPrincipal.pas=C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\View\FrmPrincipal.pas</Transaction>
+    <Transaction>2019/08/26 10:30:36.000.168,C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Exception\CPFInvalido.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Unit1.pas</Transaction>
+    <Transaction>2019/08/26 10:31:31.000.261,C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Exception\CPFException.pas=C:\Users\Dev\Documents\Delphi - Meus Projetos\Cadastro - MVC - Banco\Exception\CPFInvalido.pas</Transaction>
+    <Transaction>2019/10/01 10:40:29.000.776,C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\View\FrmPrincipal.dfm=C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\FrmPrincipal.dfm</Transaction>
+    <Transaction>2019/10/01 10:40:29.000.776,C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\View\FrmPrincipal.pas=C:\Users\Dev05\Documents\Projetos DELPHI - Gabriel\Delphi - Meus Projetos\CRUD\FrmPrincipal.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Controller"/>

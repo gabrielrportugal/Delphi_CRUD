@@ -11,7 +11,7 @@ uses
   System.Generics.Collections;
 
 type
-  TForm1 = class(TForm)
+  TFormularioPrincipal = class(TForm)
     Panel1: TPanel;
     ListView1: TListView;
     Panel2: TPanel;
@@ -41,18 +41,18 @@ type
   end;
 
 var
-  Form1: TForm1;
+  FormularioPrincipal: TFormularioPrincipal;
 
 implementation
 
 {$R *.dfm}
 
 // Clique do botão Adicionar (Exibe o Form de Adicionar um novo cliente)
-procedure TForm1.AdicionarClick(Sender: TObject);
+procedure TFormularioPrincipal.AdicionarClick(Sender: TObject);
 var
-  LFormAdicionar: TForm2;
+  LFormAdicionar: TFormularioAdicionar;
 begin
-  LFormAdicionar := TForm2.Create(nil);
+  LFormAdicionar := TFormularioAdicionar.Create(nil);
   try
     LFormAdicionar.ClienteControl := FClienteControl;
     LFormAdicionar.ShowModal;
@@ -65,13 +65,13 @@ begin
 end;
 
 // Clique do botão Editar (Exibe o Form Editar, passando a instância do controlador)
-procedure TForm1.EditarClick(Sender: TObject);
+procedure TFormularioPrincipal.EditarClick(Sender: TObject);
 var
-  LFormEditar: TForm3;
+  LFormEditar: TFormularioEditar;
 begin
   if ListView1.ItemIndex = -1 then
     raise Exception.Create('Selecione um cliente');
-  LFormEditar := TForm3.Create(nil);
+  LFormEditar := TFormularioEditar.Create(nil);
   try
     LFormEditar.ClienteControl := FClienteControl;
     LFormEditar.Cliente := FListaClienteView[ListView1.ItemIndex];
@@ -85,7 +85,7 @@ begin
 end;
 
 // Evento de digitar no campo Busca (Pesquisa de acordo com o que for digitado)
-procedure TForm1.edtBuscaKeyUp(Sender: TObject; var Key: Word;
+procedure TFormularioPrincipal.edtBuscaKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   FListaClienteView := FClienteControl.ClienteDAO.BuscarLista(edtBusca.Text);
@@ -93,14 +93,14 @@ begin
 end;
 
 // Clique no botão Atualizar (Atualiza o ListView com uma nova busca ao banco)
-procedure TForm1.AtualizarClick(Sender: TObject);
+procedure TFormularioPrincipal.AtualizarClick(Sender: TObject);
 begin
   BuscarCliente;
   edtBusca.Text := '';
 end;
 
 //Configurações do ListView do Form Principal
-procedure TForm1.ConfigListView;
+procedure TFormularioPrincipal.ConfigListView;
 var
   LListaColuna: TListColumn;
 begin
@@ -132,7 +132,7 @@ begin
 end;
 
 // Método que realiza uma busca no banco, carrega os dados na lista de clientes
-procedure TForm1.BuscarCliente;
+procedure TFormularioPrincipal.BuscarCliente;
 begin
   FListaClienteView := FClienteControl.ClienteDAO.RetornarListaCompleta;
   if FListaClienteView.Count > 0 then
@@ -141,7 +141,7 @@ begin
 end;
 
 // Método que insere no List View os dados da lista de clientes
-procedure TForm1.ListarListView(const ListaClientes: TObjectList<TCliente>);
+procedure TFormularioPrincipal.ListarListView(const ListaClientes: TObjectList<TCliente>);
 var
   I: Integer;
   ListaItem: TListItem;
@@ -158,27 +158,27 @@ begin
 end;
 
 // Evento de duplo clique que chama o evento EditarClick que exibe o form de edição
-procedure TForm1.ListView1DblClick(Sender: TObject);
+procedure TFormularioPrincipal.ListView1DblClick(Sender: TObject);
 begin
   EditarClick(ListView1);
 end;
 
 //Ao criar é criada uma instância do controlador e configurada o list view
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TFormularioPrincipal.FormCreate(Sender: TObject);
 begin
   FClienteControl := TClienteControl.Create;
   ConfigListView;
 end;
 
 //Ao destruir a lista e a instância do controlador são destruidas
-procedure TForm1.FormDestroy(Sender: TObject);
+procedure TFormularioPrincipal.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(FListaClienteView);
   FClienteControl.Free;
 end;
 
 // Ao exibir o Form Principal os dados são buscados e carregados no ListView
-procedure TForm1.FormShow(Sender: TObject);
+procedure TFormularioPrincipal.FormShow(Sender: TObject);
 begin
   BuscarCliente;
 end;

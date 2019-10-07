@@ -9,7 +9,7 @@ uses
   ClienteController, ClienteModel;
 
 type
-  TForm2 = class(TForm)
+  TFormularioAdicionar = class(TForm)
     Panel1: TPanel;
     Panel2: TPanel;
     edtNome: TEdit;
@@ -30,7 +30,7 @@ type
   end;
 
 var
-  Form2: TForm2;
+  FormularioAdicionar: TFormularioAdicionar;
 
 implementation
 
@@ -41,7 +41,7 @@ uses
 
 { Método do clique do botão adicionar que insere os dados no
   banco de dados através do controlador }
-procedure TForm2.AdicionarClick(Sender: TObject);
+procedure TFormularioAdicionar.AdicionarClick(Sender: TObject);
 begin
   FCliente := TCliente.Create;
   try
@@ -67,7 +67,7 @@ begin
   end;
 end;
 
-procedure TForm2.EventoController(Sender: TObject);
+procedure TFormularioAdicionar.EventoController(Sender: TObject);
 begin
   ShowMessage('Nome registrado');
 end;

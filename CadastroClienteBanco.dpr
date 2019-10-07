@@ -2,9 +2,9 @@ program CadastroClienteBanco;
 
 uses
   Vcl.Forms,
-  FrmPrincipal in 'View\FrmPrincipal.pas' {Form1},
-  FrmAdicionar in 'View\FrmAdicionar.pas' {Form2},
-  FrmEditar in 'View\FrmEditar.pas' {Form3},
+  FrmPrincipal in 'View\FrmPrincipal.pas' {FormularioPrincipal},
+  FrmAdicionar in 'View\FrmAdicionar.pas' {FormularioAdicionar},
+  FrmEditar in 'View\FrmEditar.pas' {FormularioEditar},
   Vcl.Themes,
   Vcl.Styles,
   ClienteModel in 'Model\ClienteModel.pas',
@@ -20,7 +20,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   TStyleManager.TrySetStyle('Iceberg Classico');
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormularioPrincipal, FormularioPrincipal);
   Application.Run;
 
 end.
